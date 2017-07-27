@@ -1,19 +1,12 @@
-FROM debian:jessie
-MAINTAINER hxz <huang_xuezhong@vobile.cn>
+FROM ubuntu:14.04
+MAINTAINER hxz <hxzqlh@gmail.com>
 
-ENV PKGS                /tmp/vddb_pkg
-ENV VDDB                /opt/vdnaserver
-ENV VOBILEDATA          /vobiledata
-ENV VDNADATA            $VOBILEDATA/vdna
-ENV MYSQL_ROOT_PASSWORD 123
-ENV MYSQL_USER          vdna
-ENV MYSQL_PASSWORD      123
-ENV DB_PKGS             /root/vddb_mysql_v5.9.2
-ENV ETC                 /home/vdna/etc
+ENV ETC         me/vdna/etc
+ENV USER hxz
 
 # add user
-RUN useradd vdna -d /home/vdna -s /bin/bash -m -k -U && \
-    echo vdna:123 | chpasswd 
+RUN useradd $USER -d /home/$USER -s /bin/bash -m -k -U && \
+    echo $USER:123 | chpasswd 
 
 # VDDB && vobiledata
 RUN mkdir -p $PKGS $ETC $VDDB \
